@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="../../template/template.xhtml">
+    <ui:define name="title">#{tournamentCreateBean.title}</ui:define>
+    <ui:define name="content">
+        <h:form style="margin: 12px;">
+            <p:panelGrid columns="4"
+                         columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                         layout="grid"
+                         styleClass="ui-panelgrid-blank ui-fluid"
+                         style="border:0px none; background-color:transparent;">
+                <p:outputLabel for="@next" value="Tên giải đấu"/>
+                <p:inputText value="#{tournamentCreateBean.newTournament.name}"/>
+
+                <p:outputLabel for="@next" value="Loại sân thi đấu"/>
+                <p:selectOneMenu id="hideNoselectionOption" value="#{tournamentCreateBean.newTournament.type}"
+                                 hideNoSelectionOption="#{not empty tournamentCreateBean.newTournament.type}">
+                    <!--                <p:ajax update="@this" process="@this"/>-->
+                    <f:selectItem itemLabel="Chọn loại sân thi đấu" itemValue="#{null}" noSelectionOption="true"/>
+                    <f:selectItems value="#{tournamentCreateBean.tournamentTypes}" var="tournamentType"
+                                   itemLabel="#{tournamentType.value}" itemValue="#{tournamentType}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="@next" value="Địa chỉ"/>
+                <p:inputTextarea value="#{tournamentCreateBean.newTournament.address}" rows="3"/>
+
+                <p:outputLabel for="@next" value="Ngày diễn ra"/>
+                <p:datePicker id="time" value="#{tournamentCreateBean.newTournament.eventDate}" showTime="true"/>
+
+                <p:outputLabel for="@next" value="Ảnh chính"/>
+                <p:inputText/>
+            </p:panelGrid>
+            <p:panelGrid columns="2"
+                         columnClasses="ui-grid-col-2,ui-grid-col-10"
+                         layout="grid"
+                         styleClass="ui-panelgrid-blank ui-fluid"
+                         style="border:0px none; background-color:transparent;">
+                <p:outputLabel for="@next" value="Nội dung"/>
+                <p:textEditor widgetVar="editor1" value="#{tournamentCreateBean.newTournament.content}" secure="false"
+                              style="height: 300px;" colspan="4"/>
+            </p:panelGrid>
+            <div style="text-align: right;margin-top: 60px;">
+                <p:commandButton update="@form" value="Đăng bài" icon="pi pi-save"
+                action="#{tournamentCreateBean.createTournament()}"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

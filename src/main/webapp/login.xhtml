@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Đăng nhập | Goat manager</title>
+    <style>
+        .center-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Đảm bảo form hiển thị ở giữa màn hình dọc */
+        }
+
+        .wrap-login {
+            width: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 55px 55px 37px;
+            background: #9152f8;
+        }
+
+        .wrap-input {
+            width: 100%;
+            border-bottom: 2px solid rgba(255, 255, 255, .24);
+            margin-bottom: 30px;
+            position: relative;
+        }
+    </style>
+</h:head>
+<h:body>
+    <p:growl id="messages" showDetail="true" life="5000">
+        <p:autoUpdate/>
+    </p:growl>
+    <div class="center-form">
+        <div class="wrap-login">
+            <div style="width: 100%;">
+                <h:form id="loginForm">
+                    <p:panel>
+                        <div class="wrap-input">
+                            <p:inputText class="input100" id="username" placeholder="Tên đăng nhập"
+                                         value="#{loginBean.username}"/></div>
+                        <div class="wrap-input">
+                            <p:inputText class="input100" id="password" placeholder="Mật khẩu" type="password"
+                                         value="#{loginBean.password}"/></div>
+                        <div style="display: flex; justify-content: center;">
+                            <p:commandButton
+                                    style="border-radius: 25px; background-color: #fff; color: #000;border: none;"
+                                    value="Đăng nhập"
+                                    action="#{loginBean.login()}"/></div>
+                    </p:panel>
+                </h:form>
+            </div>
+        </div>
+    </div>
+</h:body>
+
+</html>

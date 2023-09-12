@@ -1,0 +1,26 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <f:facet name="first">
+        <!--        <link rel="icon" href="#{request.contextPath}/resources/image/logo.ico"/>-->
+        <meta name="theme-color" content="blue"/>
+    </f:facet>
+    <title><ui:insert name="title"/> | Goat manager</title>
+    <link rel="stylesheet" type="text/css" href="../resources/css/project.css"/>
+</h:head>
+<h:body>
+    <p:growl id="messages" showDetail="true" life="5000">
+        <p:autoUpdate/>
+    </p:growl>
+    <ui:include src="header.xhtml"/>
+    <div class="content">
+        <ui:insert name="content"/>
+    </div>
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>

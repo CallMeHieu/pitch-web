@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="../../template/template.xhtml">
+    <ui:define name="title">#{pitchCreateBean.title}</ui:define>
+    <ui:define name="content">
+        <h:outputText styleClass="text" value="Nguyễn Văn Hiếu"/>
+        <h:form>
+            <p:inputText placeholder="Tên sân bóng"
+                         value="#{pitchCreateBean.pitchCreateRequest.name}"/>
+            <p:inputText placeholder="Địa chỉ"
+                         value="#{pitchCreateBean.pitchCreateRequest.fullAddress}"/>
+            <h:form id="formPitchTime">
+                <p:selectOneMenu value="#{pitchCreateBean.pitchTime.startTime}">
+                    <f:selectItems value="#{pitchCreateBean.optionTime}" var="pitchTime"
+                                   itemLabel="#{pitchTime.value}" itemValue="#{pitchTime}"/>
+                </p:selectOneMenu>
+                <p:selectOneMenu value="#{pitchCreateBean.pitchTime.endTime}">
+                    <f:selectItems value="#{pitchCreateBean.optionTime}" var="pitchTime"
+                                   itemLabel="#{pitchTime.value}" itemValue="#{pitchTime}"/>
+                </p:selectOneMenu>
+                <p:inputText placeholder="Giá tiền"
+                             value="#{pitchCreateBean.pitchTime.price}"/>
+                <p:commandButton value="Thêm giờ" update="formPitchTime"
+                                 action="#{pitchCreateBean.addPitchTime()}"/>
+            </h:form>
+            <p:commandButton value="Thêm mới" update="@form"
+                             action="#{pitchCreateBean.addPitch()}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

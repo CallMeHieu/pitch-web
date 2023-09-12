@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="template/template.xhtml">
+    <ui:define name="title">#{fileExcelBean.title}</ui:define>
+    <ui:define name="content">
+        <h:form>
+            <!--        <p:fileUpload label="Upload file danh sách"  previewWidth="0"-->
+            <!--                      listener="#{fileExcelBean.handleUploadExcel}"-->
+            <!--                      mode="advanced" id="fileUpload"-->
+            <!--                      auto="true" sizeLimit="10000000" styleClass="w-auto"-->
+            <!--                      chooseButtonStyleClass="w-full"-->
+            <!--                      uploadLabel="Upload danh sách sản phẩm" skinSimple="true">-->
+            <!--        </p:fileUpload>-->
+            <p:fileUpload widgetVar="uploadDnd"
+                          listener="#{fileExcelBean.handleUploadExcel}"
+                          sizeLimit="1000000"
+                          allowTypes="/(\.|\/)(xls|xlsx)$/"
+                          update="@form "
+                          mode="advanced"/>
+            <p:commandButton value="Tải file"
+                             ajax="false"
+                             onclick="PrimeFaces.monitorDownload(start);"
+                             icon="fa fa-download">
+                <p:fileDownload value="#{fileExcelBean.file}"/>
+            </p:commandButton>
+        </h:form>
+    </ui:define>
+</ui:composition>
